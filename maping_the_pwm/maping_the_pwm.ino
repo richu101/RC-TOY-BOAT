@@ -1,6 +1,6 @@
 const int ch1 = 9;//RX chanal 1
-const int ch2 = 10;//RX chanal 2
-const int ch3 = 11;//RX chanal 3
+const int ch2 = 11;//RX chanal 2
+const int ch3 = 10;//RX chanal 3
 const int motlf = 5;//If this pin is high then the left motor will rotate clockwise
 const int motlb = 6;//Left motor anti clockwise
 const int motrf = 7;//Right motor clockwise
@@ -56,22 +56,31 @@ ch2pwm = pulseIn(ch1,HIGH);
 mapch1pwm = map(ch1pwm,994,1981,0,254);
 mapch2pwm = map(ch2pwm,994,1981,0,254);
 mapch3pwm = map(ch3pwm,994,1981,0,254);
-Serial.println(mapch1pwm);
+
+Serial.print("Chanal 2:");
+Serial.println(mapch2pwm);
 analogWrite(ch3,mapch3pwm);
-if(mapch2pwm<=124)
+delay(500);
+if(mapch2pwm>=140)
 {
   forward();
+  delay(10);
+  Serial.println("forward");
 }
-if(mapch2pwm<=130)
+if(mapch2pwm<=120)
 {
   backward();
+  delay(10);
+   Serial.println("backward");
 }
-if(mapch1pwm<=127)
+if(mapch1pwm>=140)
 {
   right();
+  delay(10);
 }
-if(mapch1pwm<=130)
+if(mapch1pwm<=120)
 {
   left();
+  delay(10);
 }
 }
